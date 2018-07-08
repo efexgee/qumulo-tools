@@ -1,0 +1,509 @@
+[
+    {
+        "interface_details": {
+            "bytes_received": "1428705819249338", 
+            "bytes_sent": "1656061910115141", 
+            "cable_status": "CONNECTED", 
+            "interface_status": "UP", 
+            "mac_address": "e4:1d:2d:1e:35:e0", 
+            "speed": 80000, 
+            "timestamp": "1524705986131"
+        }, 
+        "interface_status": {
+            "bonding_mode": "IEEE_8023AD", 
+            "default_gateway": "172.16.63.254", 
+            "default_gateway_ipv6": "", 
+            "interface_id": 1, 
+            "mtu": 9000, 
+            "name": "bond0"
+        }, 
+        "network_statuses": [
+            {
+                "address": "172.16.61.123", 
+                "assigned_by": "STATIC", 
+                "dns_search_domains": [
+                    "ihme.washington.edu"
+                ], 
+                "dns_servers": [
+                    "172.16.23.6", 
+                    "172.15.56.10", 
+                    "10.155.20.5"
+                ], 
+                "floating_addresses": [
+                    "172.16.61.195", 
+                    "172.16.61.206", 
+                    "172.16.61.217", 
+                    "172.16.61.228", 
+                    "172.16.61.239"
+                ], 
+                "mtu": 9000, 
+                "name": "Default", 
+                "netmask": "255.255.248.0", 
+                "vlan_id": 0
+            }
+        ], 
+        "node_id": 1, 
+        "node_name": "chagas-fs-1", 
+        "update_status": "CHANGES_APPLIED"
+    }, 
+    {
+        "interface_details": {
+            "bytes_received": "1182235290691525", 
+            "bytes_sent": "1446700575809196", 
+            "cable_status": "CONNECTED", 
+            "interface_status": "UP", 
+            "mac_address": "e4:1d:2d:1e:d4:70", 
+            "speed": 80000, 
+            "timestamp": "1524705986225"
+        }, 
+        "interface_status": {
+            "bonding_mode": "IEEE_8023AD", 
+            "default_gateway": "172.16.63.254", 
+            "default_gateway_ipv6": "", 
+            "interface_id": 1, 
+            "mtu": 9000, 
+            "name": "bond0"
+        }, 
+        "network_statuses": [
+            {
+                "address": "172.16.61.124", 
+                "assigned_by": "STATIC", 
+                "dns_search_domains": [
+                    "ihme.washington.edu"
+                ], 
+                "dns_servers": [
+                    "172.16.23.6", 
+                    "172.15.56.10", 
+                    "10.155.20.5"
+                ], 
+                "floating_addresses": [
+                    "172.16.61.196", 
+                    "172.16.61.207", 
+                    "172.16.61.218", 
+                    "172.16.61.229"
+                ], 
+                "mtu": 9000, 
+                "name": "Default", 
+                "netmask": "255.255.248.0", 
+                "vlan_id": 0
+            }
+        ], 
+        "node_id": 2, 
+        "node_name": "chagas-fs-2", 
+        "update_status": "CHANGES_APPLIED"
+    }, 
+    {
+        "interface_details": {
+            "bytes_received": "1316372735772823", 
+            "bytes_sent": "1564554683986754", 
+            "cable_status": "CONNECTED", 
+            "interface_status": "UP", 
+            "mac_address": "e4:1d:2d:1e:d4:d0", 
+            "speed": 80000, 
+            "timestamp": "1524705986321"
+        }, 
+        "interface_status": {
+            "bonding_mode": "IEEE_8023AD", 
+            "default_gateway": "172.16.63.254", 
+            "default_gateway_ipv6": "", 
+            "interface_id": 1, 
+            "mtu": 9000, 
+            "name": "bond0"
+        }, 
+        "network_statuses": [
+            {
+                "address": "172.16.61.125", 
+                "assigned_by": "STATIC", 
+                "dns_search_domains": [
+                    "ihme.washington.edu"
+                ], 
+                "dns_servers": [
+                    "172.16.23.6", 
+                    "172.15.56.10", 
+                    "10.155.20.5"
+                ], 
+                "floating_addresses": [
+                    "172.16.61.197", 
+                    "172.16.61.208", 
+                    "172.16.61.219", 
+                    "172.16.61.230"
+                ], 
+                "mtu": 9000, 
+                "name": "Default", 
+                "netmask": "255.255.248.0", 
+                "vlan_id": 0
+            }
+        ], 
+        "node_id": 3, 
+        "node_name": "chagas-fs-3", 
+        "update_status": "CHANGES_APPLIED"
+    }, 
+    {
+        "interface_details": {
+            "bytes_received": "1273802057337752", 
+            "bytes_sent": "1545840817485443", 
+            "cable_status": "CONNECTED", 
+            "interface_status": "UP", 
+            "mac_address": "e4:1d:2d:1e:d8:10", 
+            "speed": 80000, 
+            "timestamp": "1524705986417"
+        }, 
+        "interface_status": {
+            "bonding_mode": "IEEE_8023AD", 
+            "default_gateway": "172.16.63.254", 
+            "default_gateway_ipv6": "", 
+            "interface_id": 1, 
+            "mtu": 9000, 
+            "name": "bond0"
+        }, 
+        "network_statuses": [
+            {
+                "address": "172.16.61.126", 
+                "assigned_by": "STATIC", 
+                "dns_search_domains": [
+                    "ihme.washington.edu"
+                ], 
+                "dns_servers": [
+                    "172.16.23.6", 
+                    "172.15.56.10", 
+                    "10.155.20.5"
+                ], 
+                "floating_addresses": [
+                    "172.16.61.198", 
+                    "172.16.61.209", 
+                    "172.16.61.220", 
+                    "172.16.61.231"
+                ], 
+                "mtu": 9000, 
+                "name": "Default", 
+                "netmask": "255.255.248.0", 
+                "vlan_id": 0
+            }
+        ], 
+        "node_id": 4, 
+        "node_name": "chagas-fs-4", 
+        "update_status": "CHANGES_APPLIED"
+    }, 
+    {
+        "interface_details": {
+            "bytes_received": "1213062716109816", 
+            "bytes_sent": "1466441167690002", 
+            "cable_status": "CONNECTED", 
+            "interface_status": "UP", 
+            "mac_address": "e4:1d:2d:1e:d8:d0", 
+            "speed": 80000, 
+            "timestamp": "1524705986514"
+        }, 
+        "interface_status": {
+            "bonding_mode": "IEEE_8023AD", 
+            "default_gateway": "172.16.63.254", 
+            "default_gateway_ipv6": "", 
+            "interface_id": 1, 
+            "mtu": 9000, 
+            "name": "bond0"
+        }, 
+        "network_statuses": [
+            {
+                "address": "172.16.61.127", 
+                "assigned_by": "STATIC", 
+                "dns_search_domains": [
+                    "ihme.washington.edu"
+                ], 
+                "dns_servers": [
+                    "172.16.23.6", 
+                    "172.15.56.10", 
+                    "10.155.20.5"
+                ], 
+                "floating_addresses": [
+                    "172.16.61.199", 
+                    "172.16.61.210", 
+                    "172.16.61.221", 
+                    "172.16.61.232"
+                ], 
+                "mtu": 9000, 
+                "name": "Default", 
+                "netmask": "255.255.248.0", 
+                "vlan_id": 0
+            }
+        ], 
+        "node_id": 5, 
+        "node_name": "chagas-fs-5", 
+        "update_status": "CHANGES_APPLIED"
+    }, 
+    {
+        "interface_details": {
+            "bytes_received": "1161681842068286", 
+            "bytes_sent": "1450263536253098", 
+            "cable_status": "CONNECTED", 
+            "interface_status": "UP", 
+            "mac_address": "e4:1d:2d:1f:29:c0", 
+            "speed": 80000, 
+            "timestamp": "1524705986610"
+        }, 
+        "interface_status": {
+            "bonding_mode": "IEEE_8023AD", 
+            "default_gateway": "172.16.63.254", 
+            "default_gateway_ipv6": "", 
+            "interface_id": 1, 
+            "mtu": 9000, 
+            "name": "bond0"
+        }, 
+        "network_statuses": [
+            {
+                "address": "172.16.61.128", 
+                "assigned_by": "STATIC", 
+                "dns_search_domains": [
+                    "ihme.washington.edu"
+                ], 
+                "dns_servers": [
+                    "172.16.23.6", 
+                    "172.15.56.10", 
+                    "10.155.20.5"
+                ], 
+                "floating_addresses": [
+                    "172.16.61.200", 
+                    "172.16.61.211", 
+                    "172.16.61.222", 
+                    "172.16.61.233"
+                ], 
+                "mtu": 9000, 
+                "name": "Default", 
+                "netmask": "255.255.248.0", 
+                "vlan_id": 0
+            }
+        ], 
+        "node_id": 6, 
+        "node_name": "chagas-fs-6", 
+        "update_status": "CHANGES_APPLIED"
+    }, 
+    {
+        "interface_details": {
+            "bytes_received": "1090262906274801", 
+            "bytes_sent": "1359617622026415", 
+            "cable_status": "CONNECTED", 
+            "interface_status": "UP", 
+            "mac_address": "e4:1d:2d:17:49:60", 
+            "speed": 80000, 
+            "timestamp": "1524705986705"
+        }, 
+        "interface_status": {
+            "bonding_mode": "IEEE_8023AD", 
+            "default_gateway": "172.16.63.254", 
+            "default_gateway_ipv6": "", 
+            "interface_id": 1, 
+            "mtu": 9000, 
+            "name": "bond0"
+        }, 
+        "network_statuses": [
+            {
+                "address": "172.16.61.129", 
+                "assigned_by": "STATIC", 
+                "dns_search_domains": [
+                    "ihme.washington.edu"
+                ], 
+                "dns_servers": [
+                    "172.16.23.6", 
+                    "172.15.56.10", 
+                    "10.155.20.5"
+                ], 
+                "floating_addresses": [
+                    "172.16.61.201", 
+                    "172.16.61.212", 
+                    "172.16.61.223", 
+                    "172.16.61.234"
+                ], 
+                "mtu": 9000, 
+                "name": "Default", 
+                "netmask": "255.255.248.0", 
+                "vlan_id": 0
+            }
+        ], 
+        "node_id": 7, 
+        "node_name": "chagas-fs-7", 
+        "update_status": "CHANGES_APPLIED"
+    }, 
+    {
+        "interface_details": {
+            "bytes_received": "1032406446949197", 
+            "bytes_sent": "1309748762527669", 
+            "cable_status": "CONNECTED", 
+            "interface_status": "UP", 
+            "mac_address": "e4:1d:2d:27:73:90", 
+            "speed": 80000, 
+            "timestamp": "1524705986812"
+        }, 
+        "interface_status": {
+            "bonding_mode": "IEEE_8023AD", 
+            "default_gateway": "172.16.63.254", 
+            "default_gateway_ipv6": "", 
+            "interface_id": 1, 
+            "mtu": 9000, 
+            "name": "bond0"
+        }, 
+        "network_statuses": [
+            {
+                "address": "172.16.61.130", 
+                "assigned_by": "STATIC", 
+                "dns_search_domains": [
+                    "ihme.washington.edu"
+                ], 
+                "dns_servers": [
+                    "172.16.23.6", 
+                    "172.15.56.10", 
+                    "10.155.20.5"
+                ], 
+                "floating_addresses": [
+                    "172.16.61.202", 
+                    "172.16.61.213", 
+                    "172.16.61.224", 
+                    "172.16.61.235"
+                ], 
+                "mtu": 9000, 
+                "name": "Default", 
+                "netmask": "255.255.248.0", 
+                "vlan_id": 0
+            }
+        ], 
+        "node_id": 8, 
+        "node_name": "chagas-fs-8", 
+        "update_status": "CHANGES_APPLIED"
+    }, 
+    {
+        "interface_details": {
+            "bytes_received": "1098821412129704", 
+            "bytes_sent": "1379334746640599", 
+            "cable_status": "CONNECTED", 
+            "interface_status": "UP", 
+            "mac_address": "e4:1d:2d:e4:04:e0", 
+            "speed": 80000, 
+            "timestamp": "1524705986907"
+        }, 
+        "interface_status": {
+            "bonding_mode": "IEEE_8023AD", 
+            "default_gateway": "172.16.63.254", 
+            "default_gateway_ipv6": "", 
+            "interface_id": 1, 
+            "mtu": 9000, 
+            "name": "bond0"
+        }, 
+        "network_statuses": [
+            {
+                "address": "172.16.61.131", 
+                "assigned_by": "STATIC", 
+                "dns_search_domains": [
+                    "ihme.washington.edu"
+                ], 
+                "dns_servers": [
+                    "172.16.23.6", 
+                    "172.15.56.10", 
+                    "10.155.20.5"
+                ], 
+                "floating_addresses": [
+                    "172.16.61.203", 
+                    "172.16.61.214", 
+                    "172.16.61.225", 
+                    "172.16.61.236"
+                ], 
+                "mtu": 9000, 
+                "name": "Default", 
+                "netmask": "255.255.248.0", 
+                "vlan_id": 0
+            }
+        ], 
+        "node_id": 9, 
+        "node_name": "chagas-fs-9", 
+        "update_status": "CHANGES_APPLIED"
+    }, 
+    {
+        "interface_details": {
+            "bytes_received": "1253514141755882", 
+            "bytes_sent": "1553513705876711", 
+            "cable_status": "CONNECTED", 
+            "interface_status": "UP", 
+            "mac_address": "e4:1d:2d:e4:33:c0", 
+            "speed": 80000, 
+            "timestamp": "1524705987002"
+        }, 
+        "interface_status": {
+            "bonding_mode": "IEEE_8023AD", 
+            "default_gateway": "172.16.63.254", 
+            "default_gateway_ipv6": "", 
+            "interface_id": 1, 
+            "mtu": 9000, 
+            "name": "bond0"
+        }, 
+        "network_statuses": [
+            {
+                "address": "172.16.61.132", 
+                "assigned_by": "STATIC", 
+                "dns_search_domains": [
+                    "ihme.washington.edu"
+                ], 
+                "dns_servers": [
+                    "172.16.23.6", 
+                    "172.15.56.10", 
+                    "10.155.20.5"
+                ], 
+                "floating_addresses": [
+                    "172.16.61.204", 
+                    "172.16.61.215", 
+                    "172.16.61.226", 
+                    "172.16.61.237"
+                ], 
+                "mtu": 9000, 
+                "name": "Default", 
+                "netmask": "255.255.248.0", 
+                "vlan_id": 0
+            }
+        ], 
+        "node_id": 10, 
+        "node_name": "chagas-fs-10", 
+        "update_status": "CHANGES_APPLIED"
+    }, 
+    {
+        "interface_details": {
+            "bytes_received": "1007316385486659", 
+            "bytes_sent": "1298319864173712", 
+            "cable_status": "CONNECTED", 
+            "interface_status": "UP", 
+            "mac_address": "e4:1d:2d:e4:04:80", 
+            "speed": 80000, 
+            "timestamp": "1524705987096"
+        }, 
+        "interface_status": {
+            "bonding_mode": "IEEE_8023AD", 
+            "default_gateway": "172.16.63.254", 
+            "default_gateway_ipv6": "", 
+            "interface_id": 1, 
+            "mtu": 9000, 
+            "name": "bond0"
+        }, 
+        "network_statuses": [
+            {
+                "address": "172.16.61.133", 
+                "assigned_by": "STATIC", 
+                "dns_search_domains": [
+                    "ihme.washington.edu"
+                ], 
+                "dns_servers": [
+                    "172.16.23.6", 
+                    "172.15.56.10", 
+                    "10.155.20.5"
+                ], 
+                "floating_addresses": [
+                    "172.16.61.205", 
+                    "172.16.61.216", 
+                    "172.16.61.227", 
+                    "172.16.61.238"
+                ], 
+                "mtu": 9000, 
+                "name": "Default", 
+                "netmask": "255.255.248.0", 
+                "vlan_id": 0
+            }
+        ], 
+        "node_id": 11, 
+        "node_name": "chagas-fs-11", 
+        "update_status": "CHANGES_APPLIED"
+    }
+]

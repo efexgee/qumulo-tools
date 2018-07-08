@@ -1,0 +1,169 @@
+last=0;
+while [ true ]; do
+    free=`qqbo fs_read_dir_aggregates --path /05_risk | grep "total_data" | sed 's/[^0-9]//g'`; delta=`expr $free - $last`;
+    date=`date +"%D %T"`;
+    delta=`expr $delta / 1024 / 1024`;
+    echo $date $delta MB;
+    last=$free;
+    sleep 60;
+done
+
+last=0;
+while [ true ]; do
+    files=`qqbo fs_read_dir_aggregates --path /03_outputs | grep "total_files" | sed 's/[^0-9]//g'`;
+    delta=`expr $files - $last`;
+    date=`date +"%D %T"`;
+    echo $date $delta files;
+    last=$files;
+    sleep 60;
+done
+
+d_dir_aggregates --path /epi | jq -r '"Data: \(.total_data | tonumber / 1024 / 1024 / 1024 / 1024 | floor ) Tb\nFiles: \(.total_files | tonumber / 1000 | floor) k"'
+
+qqb fs_read_dir_aggregates --path /prod/43901 | jq -r '[(.total_capacity | tonumber), (.total_files | tonumber), .path] | @sh' | awk '{printf "%8.1f Gb %10d  %s\n", $1 / 1024^3, $2, $3}'
+
+qqb floating_ip_allocation | jq -r '.[] | .id as $ID | "\(.floating_addresses[]) \($ID)"'
+
+
+qqd network_poll | jq -r '.[] | [ .node_id, .node_name, (.network_statuses[] | .address), (.interface_details | .mac_address)] | @csv'
+
+qqd nodes_list | jq -r '.[] | [.id, .node_name, .label, .serial_number] | @csv'
+
+falko@snfs-gw-p01:~/Falko/EC_Migration/blah-migration/clean-up$ for file in `ls`; do path=`echo $file | sed 's/\.csv$//; s/\./,/g'`;  awk -F \, "BEGIN { OFS=\",\" } {print \"${path}\",\$3,\$1,\$2}" $file ; done | tr -d '"' > all.csv
+
+paste <(qq_sizes_csv blah-fs /centralcomp | sort -t, -k3) <(qq_sizes_csv chagas-fs /centralcomp | sort -t, -k3) -d, | awk -F, 'BEGIN { print "entry                           size    files"; print} {if (NF == 6) {printf "%-32s %5.1f%%   %5.1f%%\n", $3, $4 / $1 * 100, $5 / $2 * 100} else {printf "%-33s <missing data>", $3}}' | tr -d '"'
+
+paste <(echo;qq_sizes_csv blah-fs / | sort -t, -k3) <(qq_sizes_csv chagas-fs / | sort -t, -k3) -d, | sed 's/^,//' | awk -F, 'BEGIN { printf "%-32s %5s %10s\n", "entry", "size", "files"; print} {if (NF == 6) {printf "%-32s %7.1f%% %9.1f%%\n", $3, $4 / $1 * 100, $5 / $2 * 100} else {printf "%-32s %18s\n", $3, "<Missing Data>"}}' | tr -d '"'
+
+SAP
+cluster_conf
+ad_list
+ad_poll
+auth_list_groups
+auth_list_group
+auth_list_users
+auth_list_user (can't jq)
+auth_get_all_related_identities
+floating_ip_allocation
+fs_get_stats
+network_conf_get
+network_list_networks
+network_poll (big one)
+nfs_list_shares
+nfs_list_share
+nodes_list
+quota_list_quotas
+quota_get_quota
+smb_list_shares
+smb_list_share
+snapshot_list_snapshots
+snapshot_list_policies
+static_ip_allocation
+time_status
+version
+
+
+qqc snapshot_list_snapshots | jq -r '.entries[] | "ID: \(.id)\nName:      \(.name)\nDirectory: \(.directory_name)\nTimestamp: \(.timestamp)\n"'
+
+for snap in `qqc snapshot_list_snapshots | jq -r '.entries[] | .id'`; do size=`qqc snapshot_calculate_used_capacity --id $snap | jq -r '.bytes'`; echo "$snap $((size / 1024 ** 3)) Gb"; done
+
+for snap in `(echo Total; qqc snapshot_list_snapshots | jq -r '.entries[] | .id')`; do if [ "$snap" == "Total" ]; then size=`qqc snapshot_get_total_used_capacity | jq -r '.bytes'`; else size=`qqc snapshot_calculate_used_capacity --id $snap | jq -r '.bytes'`; fi; echo "$snap $size"; done | awk '{printf "%-5s %'\''10.1f Gb\n", $1, $2 / 1024 ^ 3}'
+
+qqc snapshot_list_snapshots | jq -r '.entries[] | "ID: \(.id)\nName:      \(.name)\nDirectory: \(.directory_name)\nTimestamp: \(.timestamp)\n"'
+ID: 2
+Name:      cc --delete, new cancer
+Directory: 2_cc --delete, new cancer
+Timestamp: 2017-05-09T05:36:15.546751327Z
+
+ID: 3
+Name:      geo,cost,res --delete
+Directory: 3_geo,cost,res --delete
+Timestamp: 2017-05-17T20:21:29.855604699Z
+
+
+for snap in `(echo Total; qqc snapshot_list_snapshots | jq -r '.entries[] | .id')`; do if [ "$snap" == "Total" ]; then size=`qqc snapshot_get_total_used_capacity | jq -r '.bytes'`; else size=`qqc snapshot_calculate_used_capacity --id $snap | jq -r '.bytes'`; fi; echo "$snap $size"; done | awk '{printf "%-5s %'\''10.1f Gb\n", $1, $2 / 1024 ^ 3}'
+Total  109,923.3 Gb
+2       84,737.6 Gb
+3        1,532.2 Gb
+
+
+
+
+
+falko@snfs-gw-p01:~$ qqc snapshot_list_snapshots
+{
+    "entries": [
+        {
+            "created_by_policy": false,
+            "directory_name": "10_routine",
+            "expiration": "",
+            "id": 10,
+            "name": "routine",
+            "source_path": "/",
+            "timestamp": "2017-06-30T17:54:21.439107552Z"
+        },
+        {
+            "created_by_policy": false,
+            "directory_name": "11_routine",
+            "expiration": "",
+            "id": 11,
+            "name": "routine",
+            "source_path": "/",
+            "timestamp": "2017-07-03T21:25:27.821340858Z"
+        }
+    ]
+}
+
+falko@snfs-gw-p01:~$ qqc snapshot_get_total_used_capacity | jq '.bytes | tonumber' | awk '{ printf "%d TB\n", $1 / 1024 ^ 4}'
+72 TB
+
+falko@snfs-gw-p01:~$ for snap in {9..11}; do qqc snapshot_get_snapshot --id=$snap; done
+Error 404: snapshot_not_found_error: Snapshot 9 not found.
+{
+    "created_by_policy": false,
+    "directory_name": "10_routine",
+    "expiration": "",
+    "id": 10,
+    "name": "routine",
+    "source_path": "/",
+    "timestamp": "2017-06-30T17:54:21.439107552Z"
+}
+{
+    "created_by_policy": false,
+    "directory_name": "11_routine",
+    "expiration": "",
+    "id": 11,
+    "name": "routine",
+    "source_path": "/",
+    "timestamp": "2017-07-03T21:25:27.821340858Z"
+}
+
+falko@snfs-gw-p01:~$ for snap in {9..11}; do qqc snapshot_calculate_used_capacity --id=$snap | jq '.bytes | tonumber' | awk '{ printf "%d GB\n", $1 / 1024 ^ 3}'; done
+51292 GB
+25 GB
+0 GB
+
+falko@snfs-gw-p01:~$ qqc snapshot_calculate_used_capacity --id=9,10,11  | jq '.bytes | tonumber' | awk '{ printf "%d GB\n", $1 / 1024 ^ 3}'
+73785 GB
+
+falko@snfs-gw-p01:~$ qqc snapshot_calculate_used_capacity --id=10,11  | jq '.bytes | tonumber' | awk '{ printf "%d GB\n", $1 / 1024 ^ 3}'
+25 GB
+
+falko@snfs-gw-p01:~$ qqc snapshot_calculate_used_capacity --id=11  | jq '.bytes | tonumber' | awk '{ printf "%d GB\n", $1 / 1024 ^ 3}'
+0 GB
+
+falko@snfs-gw-p01:~$ qqc snapshot_calculate_used_capacity --id=9,10  | jq '.bytes | tonumber' | awk '{ printf "%d GB\n", $1 / 1024 ^ 3}'
+73599 GB
+
+falko@snfs-gw-p01:~$ qqc snapshot_calculate_used_capacity --id=9,11  | jq '.bytes | tonumber' | awk '{ printf "%d GB\n", $1 / 1024 ^ 3}'
+51231 GB
+
+falko@snfs-gw-p01:~$ qqc snapshot_delete_snapshot --id=9
+Error 404: snapshot_not_found_error: The snapshot you are trying to delete no longer exists.
+
+
+qq_sizes | sed -r "s#( *([^ ]* *){4})([^ ]*)#\1 $(basename `pwd`)/\3#" | awk '{ if ( $1 >= 5000 ) { print }}'
+
+qq_sizes | sed -r "s#( *([^ ]* *){4})([^ ]*)#\1 $(basename `pwd`)/\3#" | awk '{size=$1; gsub(/,/,"",size); if ( int(size) >= 5000 ) { print }}'
+
+

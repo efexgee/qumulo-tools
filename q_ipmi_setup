@@ -1,0 +1,20 @@
+ssh admin@chagas-fs-node02
+
+sudo ipmitool lan set 3 ipsrc static
+sudo ipmitool lan set 3 ipaddr 10.155.52.218
+sudo ipmitool lan set 3 netmask 255.255.254.0
+sudo ipmitool lan set 3 defgw ipaddr 10.155.52.1
+sudo ipmitool user set password 2 <IPMI_PASSWORD> 20
+sudo ipmitool user enable 2
+sudo ipmitool lan print 3 | egrep '^(IP Address Source.*Static Address|IP Address.*10.155.52.|Subnet Mask.*255.255.254.0|Default Gateway IP.*10.155.52.1)'
+
+sudo ipmitool lan set 1 ipsrc static
+sudo ipmitool lan set 1 ipaddr 10.155.52.224
+sudo ipmitool lan set 1 netmask 255.255.254.0
+sudo ipmitool lan set 1 defgw ipaddr 10.155.52.1
+
+sudo ipmitool lan print 1 | egrep '^(IP Address Source.*Static Address|IP Address.*10.155.52.|Subnet Mask.*255.255.254.0|Default Gateway IP.*10.155.52.1)'
+
+sudo ipmitool user set name 8 root
+sudo ipmitool user set password 8 <IPMI_PASSWORD> 20
+sudo ipmitool user enable 8

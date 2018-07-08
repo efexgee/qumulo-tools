@@ -1,0 +1,95 @@
+#!/bin/bash
+
+alias qq_user='qq --host chagas-fs --credentials-store $HOME/.qfsd_cred.username login -u "ihme\\$LOGNAME"'
+alias qq_logout='qq --host chagas-fs --credentials-store $HOME/.qfsd_cred.username logout'
+alias qqu='qq --host chagas-fs --credentials-store $HOME/.qfsd_cred.username'
+
+qq_sizes () 
+{ 
+    local func_name=${FUNCNAME[0]}
+    local max_entries=5000
+    # Qumulo API credentials file
+    local token_file="$HOME/.qfsd_cred.username"
+    # List of Qumulos
+    local required_hostnames='(chagas-fs|dengue-fs|fast-fs|blah-fs)'
+
+    # Usage
+    if (( $# > 2 )); then
+        echo "Usage: $func_name [ <Qumulo cluster> <full Qumulo path> ]"
+        return 1
+    fi
+    if (( $# == 1 )); then
+        echo "Usage: $func_name [ <Qumulo cluster> <full Qumulo path> ]"
+        echo "Error: Either specify both cluster and path, or neither to use current location"
+        return 5
+    fi
+
+    # check whether a credentials file exists
+    if ! [ -f $token_file ]; then
+        echo "$func_name: token file doesn't seem to exist: $token_file"
+        return 4
+    fi
+
+    # if no options are supplied, run on current path
+    if (( $# == 2 )); then
+        local cluster=$1
+        local path=$2
+    else
+        # figure out which Qumulo we're on
+        local cluster=$(host $(df -P . | tail -1 | awk -F'[: ]' '{print $1}') | awk -F'[ .]' '{print $10}')
+
+        # check whether this path is mounted from Qumulo
+        if ! echo $cluster | egrep -xq "$required_hostnames"; then
+            #TODO use bash alternate value to print something in case of FS
+            echo "$func_name: this path seems to be on a non-Qumulo system: $cluster"
+            return 4
+        fi
+
+        # convert our path into the Qumulo path (pwd -P to account for symlinks)
+        local path=$(pwd -P | sed "s#$(dirname $(df -P . | tail -1 | awk '{print $NF}'))##")
+    fi
+
+    # check whether the supplied path has a leading slash
+    #TODO fix to correct path instead
+    if ! $(echo $path | grep -q '^/'); then
+        echo "$func_name: path needs to start with a slash"
+        return 2
+    fi
+
+    # try getting our login
+    local qq_who_am_i=`qq --host $cluster --credentials-store $token_file who_am_i`
+    # if that fails...
+    if $(echo $qq_who_am_i | grep -q Error); then
+        # ...check Qumulo's name (should always work)
+        local qq_cluster_conf=`qq --host $cluster --credentials-store $token_file cluster_conf`
+        # if that also fails we have a connection problem
+        if $(echo $qq_cluster_conf | grep -q Error); then
+            echo "$func_name: Error talking to $cluster. Is there an established session?"
+            return 3
+        else
+            # we are connected, but not logged in as one of the users created on the Qumulo
+            #TODO print this below the output
+            #TODO explain about incorrect data
+            #TODO add a flag to suppress this?
+            echo "$func_name: Warning: Not logged in as a Qumulo user. Some paths won't be accessible."
+            echo
+        fi
+    else
+        # check whether we are logged in as "admin"
+        local qq_login=`echo $qq_who_am_i | jq -r '.name' 2> /dev/null`
+        if ! [ "$qq_login" = "admin" ]; then
+            # print a warning but keep running
+            echo "$func_name: Warning: Not logged in as admin (login = $qq_login). Some paths won't be accessible."
+            echo
+        fi
+    fi
+
+    # get aggregate data
+    qq --host $cluster --credentials-store $token_file fs_read_dir_aggregates --max-entries $max_entries --path $path |
+        # grab fields out of the JSON and format as CSV
+        jq -r '.files[] | [(.data_usage | tonumber), (.num_files | tonumber), (.num_directories | tonumber), .name] | @csv' |
+        # remove double-quotes
+        tr -d '"' |
+        # format the output
+        awk -F, '{printf "%10'\''.1f Gb %12'\''d files  %s\n", $path / 1024^3, $2 + $3, $4}'
+}

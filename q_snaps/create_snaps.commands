@@ -1,0 +1,3 @@
+qqX snapshot_create_policy daily -n "Daily Snapshots" -t 2days -z "America/Los_Angeles" -a "04:00"
+qqX snapshot_create_policy hourly_or_less -n "Hourly Snapshots" -t 3hours -z "America/Los_Angeles" -p 1hour
+qqX snapshot_create_policy daily -n "Weekly Snapshots" -t 7days -z "America/Los_Angeles" -d "TUE,FRI" -a "04:00"
